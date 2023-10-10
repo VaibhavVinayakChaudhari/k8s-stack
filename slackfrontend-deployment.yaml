@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.31.1 (46dcb9181)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: slackfrontend
+  name: slackfrontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: slackfrontend
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.31.1 (46dcb9181)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/slack-clone---mern-stack-default: "true"
+        io.kompose.service: slackfrontend
+    spec:
+      containers:
+        - image: slackfrontend
+          name: slackfrontend
+          ports:
+            - containerPort: 3000
+              hostPort: 888
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}
