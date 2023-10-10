@@ -26,7 +26,7 @@ spec:
         io.kompose.service: nodebackend
     spec:
       containers:
-        - image: nodebackend
+        - image: docker.io/nodebackend
           name: nodebackend
           ports:
             - containerPort: 9000
